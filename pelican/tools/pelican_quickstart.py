@@ -47,6 +47,7 @@ CONF = {
     'ssh_port': 22,
     'ssh_user': 'root',
     'ssh_target_dir': '/var/www',
+    'gcs_bucket': 'www.example.com',
     's3_bucket': 'my_s3_bucket',
     'cloudfiles_username': 'my_rackspace_username',
     'cloudfiles_api_key': 'my_rackspace_api_key',
@@ -296,6 +297,11 @@ needed by Pelican.
                answer=bool, default=False):
             CONF['dropbox_dir'] = ask('Where is your Dropbox directory?',
                                       str_compat, CONF['dropbox_dir'])
+
+        if ask('Do you want to upload your website using Google Cloud '
+               'Storage?', answer=bool, default=False):
+            CONF['gcs_bucket'] = ask('What is the name of your GCS bucket?',
+                                     str_compat, CONF['gcs_bucket'])
 
         if ask('Do you want to upload your website using S3?',
                answer=bool, default=False):
